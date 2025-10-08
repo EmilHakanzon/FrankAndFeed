@@ -1,7 +1,8 @@
 import Image from "next/image";
 import LoginForm from "@/components/LoginForm";
 
-export default function HomePage() {
+export default function LoginPage() {
+  
   return (
     <main className="flex flex-col items-center justify-center w-full h-full">
       {/* Logotyp-boxen */}
