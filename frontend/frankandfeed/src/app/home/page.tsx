@@ -1,3 +1,6 @@
+"use client";
+
+import FilterComponent from "@/components/filterComponents";
 import PostCard from "@/components/PostCard";
 //import { useEffect, useState } from "react";
 
@@ -88,12 +91,14 @@ export default function HomePage() {
   }
   */
 
+  const handleFilterChange = (selectedFilter: string) => {
+    console.log("Selected filter:", selectedFilter);
+  };
+
   return (
     <div>
       {/*filter komponent */}
-      <div className="bg-white p-4 rounded-lg shadow-sm mb-6 text-gray-500 text-sm text-center">
-        Filter-komponent kommer här senare
-      </div>
+      <FilterComponent onFilterChange={handleFilterChange} />
 
       {/*postCard */}
       {feedData.map((post, i) => (

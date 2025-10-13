@@ -24,20 +24,26 @@ export default function ProfilePageHeader() {
 
   // Skeleton Loading Component
   const ProfileSkeleton = () => (
-    <section className="absolute top-23 left-1/4 rounded-b-lg shadow-md w-2xl mx-auto bg-white">
-      <div className="bg-gray-50 p-4">
-        <div className="flex items-center space-x-3">
+    <section className="bg-white rounded-lg shadow-sm p-4 mb-6">
+      <div className="bg-gray-50 p-6 rounded-lg">
+        <div className="flex items-center space-x-4 w-full">
           {/* Avatar Skeleton */}
-          <div className="relative">
-            <div className="w-10 h-10 rounded-full bg-gray-300 animate-pulse"></div>
+          <div className="relative flex-shrink-0">
+            <div className="w-20 h-20 rounded-full bg-gray-300 animate-pulse"></div>
           </div>
 
           {/* Username and Bio Skeleton */}
           <div className="flex-1">
             {/* Username skeleton */}
-            <div className="h-4 bg-gray-300 rounded animate-pulse mb-2 w-20"></div>
+            <div className="h-5 bg-gray-300 rounded animate-pulse mb-2 w-32"></div>
             {/* Bio skeleton */}
-            <div className="h-3 bg-gray-300 rounded animate-pulse w-32"></div>
+            <div className="h-4 bg-gray-300 rounded animate-pulse w-48 mb-3"></div>
+            {/* Stats skeleton */}
+            <div className="flex space-x-6">
+              <div className="h-3 bg-gray-300 rounded animate-pulse w-12"></div>
+              <div className="h-3 bg-gray-300 rounded animate-pulse w-16"></div>
+              <div className="h-3 bg-gray-300 rounded animate-pulse w-14"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -45,14 +51,14 @@ export default function ProfilePageHeader() {
   );
 
   const ProfileLoading = () => (
-    <section className="absolute top-23 left-1/4 rounded-b-lg shadow-md w-2xl mx-auto bg-white">
-      <div className="bg-gray-50 p-4">
+    <section className="bg-white rounded-lg shadow-sm p-4 mb-6">
+      <div className="bg-gray-50 p-6 rounded-lg">
         <LoadingSpinner
           size="md"
           color="blue"
           showText={true}
           text="Loading profile..."
-          className="py-8"
+          className="py-12"
         />
       </div>
     </section>
@@ -70,13 +76,13 @@ export default function ProfilePageHeader() {
 
   // Actual Profile Component
   return (
-    <section className="absolute top-23 left-1/4 rounded-b-lg shadow-md w-2xl mx-auto bg-white ">
+    <section className="bg-white rounded-lg shadow-sm p-4 mb-6">
       {/* Profile Area */}
-      <div className="bg-gray-50 p-4">
-        <div className="flex items-center space-x-3">
+      <div className="bg-gray-50 p-6 rounded-lg">
+        <div className="flex items-center space-x-4 w-full">
           {/* Avatar */}
-          <div className="relative">
-            <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-gray-300">
+          <div className="relative flex-shrink-0">
+            <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-gray-300">
               {user.avatar ? (
                 <img
                   src={user.avatar}
@@ -87,7 +93,7 @@ export default function ProfilePageHeader() {
                 // Fallback avatar
                 <div className="w-full h-full bg-gray-400 flex items-center justify-center">
                   <svg
-                    className="w-5 h-5 text-white"
+                    className="w-10 h-10 text-white"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                   >
@@ -103,20 +109,27 @@ export default function ProfilePageHeader() {
 
             {/* Login Status Indicator */}
             {user.isOnline && (
-              <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></div>
+              <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 border-3 border-white rounded-full"></div>
             )}
           </div>
 
-          {/* Username */}
-          <div>
-            <h2 className="font-medium text-gray-800 text-sm">
+          {/* Username and Bio */}
+          <div className="flex-1 min-w-0">
+            <h2 className="font-semibold text-gray-800 text-lg mb-1">
               {user.username}
             </h2>
             {user.bio && (
-              <p className="text-sm text-gray-600 mt-1 leading-relaxed">
+              <p className="text-base text-gray-600 leading-relaxed">
                 "{user.bio}"
               </p>
             )}
+
+            {/* Profile Stats - Optional Enhancement */}
+            <div className="flex items-center space-x-6 mt-3 text-sm text-gray-500">
+              <span>0 Posts</span>
+              <span>0 Following</span>
+              <span>0 Followers</span>
+            </div>
           </div>
         </div>
       </div>
