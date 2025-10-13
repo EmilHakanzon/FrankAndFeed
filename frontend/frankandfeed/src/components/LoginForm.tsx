@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import LoadingSpinner from "./loadingSpinner";
 
 export default function LoginForm() {
@@ -9,6 +10,7 @@ export default function LoginForm() {
   const [isLoading, setIsLoading] = useState(true);
   const [isFormFocused, setIsFormFocused] = useState(false);
   const [isRegistering, setIsRegistering] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     // Api anrop senare
@@ -28,6 +30,7 @@ export default function LoginForm() {
       //lägg till inloggningslogik här senare
       setIsLoading(false);
       // Här kommer senare backend API-anrop
+      router.push("/home");
     }, 2000);
   };
 
@@ -69,7 +72,6 @@ export default function LoginForm() {
             ? "backdrop-blur-xl bg-white border border-white/20 shadow-xl"
             : "bg-transparent border-transparent"
         }`}
-        //Kanske ta bort hela backdrop-blur och frosted glass effekten? eller bara lägga till den på loggin formuläret??
         onClick={() => setIsFormFocused(true)}
       >
         {!isRegistering ? (
@@ -121,7 +123,7 @@ export default function LoginForm() {
             />
             <button
               type="button"
-              onClick={() => setIsRegistering(true)} // ändrat från alert till setIsRegistering för att visa registreringsformulär
+              onClick={() => setIsRegistering(true)}
               disabled={isLoading}
               className={`text-white py-3 rounded-lg font-semibold transition-all ${
                 isFormFocused
@@ -133,7 +135,6 @@ export default function LoginForm() {
             </button>
           </form>
         ) : (
-          //Skapa konto fomrulär
           <form
             onSubmit={handleRegister}
             className="flex flex-col space-y-4 pt-4"
@@ -143,7 +144,11 @@ export default function LoginForm() {
               placeholder="username..."
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="border rounded-lg p-3 text-sm bg-blue-50 text-gray-400 placeholder-gray-500 focus:ring-2 focus:ring-blue-500"
+              className={`border rounded-lg p-3 text-sm focus:outline-none transition-all ${
+                isFormFocused
+                  ? "border-white/20 bg-white/20 backdrop-blur-sm text-gray-800 placeholder-gray-600 focus:ring-2 focus:ring-blue-500/50 focus:border-transparent"
+                  : "border-gray-300 bg-white text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              }`}
               disabled={isLoading}
             />
             <input
@@ -151,7 +156,11 @@ export default function LoginForm() {
               placeholder="password..."
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="border rounded-lg p-3 text-sm bg-blue-50 text-gray-400 placeholder-gray-500 focus:ring-2 focus:ring-blue-500"
+              className={`border rounded-lg p-3 text-sm focus:outline-none transition-all ${
+                isFormFocused
+                  ? "border-white/20 bg-white/20 backdrop-blur-sm text-gray-800 placeholder-gray-600 focus:ring-2 focus:ring-blue-500/50 focus:border-transparent"
+                  : "border-gray-300 bg-white text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              }`}
               disabled={isLoading}
             />
             <input
@@ -159,21 +168,29 @@ export default function LoginForm() {
               placeholder="repeat password..."
               value={repeatPassword}
               onChange={(e) => setRepeatPassword(e.target.value)}
-              className="border rounded-lg p-3 text-sm bg-blue-50 text-gray-400 placeholder-gray-500 focus:ring-2 focus:ring-blue-500"
+              className={`border rounded-lg p-3 text-sm focus:outline-none transition-all ${
+                isFormFocused
+                  ? "border-white/20 bg-white/20 backdrop-blur-sm text-gray-800 placeholder-gray-600 focus:ring-2 focus:ring-blue-500/50 focus:border-transparent"
+                  : "border-gray-300 bg-white text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              }`}
               disabled={isLoading}
             />
 
             <button
               type="submit"
               disabled={isLoading}
-              className="bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold transition-all"
+              className={`text-white py-3 rounded-lg font-semibold transition-all ${
+                isFormFocused
+                  ? "bg-green-600/80 hover:bg-green-700/80 disabled:bg-green-400/60 backdrop-blur-sm border border-green-500/30"
+                  : "bg-green-600 hover:bg-green-700 disabled:bg-green-400"
+              }`}
             >
               Skapa nytt konto
             </button>
 
             <button
               type="button"
-              onClick={() => setIsRegistering(false)} //tillbaka till inloggning
+              onClick={() => setIsRegistering(false)}
               className="text-blue-600 font-medium hover:underline text-sm mt-2"
             >
               Tillbaka till inloggning
