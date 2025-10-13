@@ -1,24 +1,17 @@
 "use client";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
-     const [username, setUsername] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [repeatPassword, setRepeatPassword] = useState("");
     const [isLoading, setIsLoading] = useState(true);
     const [isFormFocused, setIsFormFocused] = useState(false);
     const [isRegistering, setIsRegistering] = useState(false);
+    const router = useRouter();
 
-    useEffect(() => {
-        // Api anrop senare
-        //simulera loading time innan formuläret
-        const timer = setTimeout(() => {
-            setIsLoading(false);
-        }, 1500);
-        return () => clearTimeout(timer);
-    }, []);
-
-    const handleLogin = async (e: React.FormEvent) => {
+     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsLoading(true);
         // simmulera Api anrop senare...
@@ -27,8 +20,18 @@ export default function LoginForm() {
             //lägg till inloggningslogik här senare
             setIsLoading(false);
             // Här kommer senare backend API-anrop   
+            router.push("/home");
         }, 2000);
     };
+
+       useEffect(() => {
+        // Api anrop senare
+        //simulera loading time innan formuläret
+        const timer = setTimeout(() => {
+            setIsLoading(false);
+        }, 1500);
+        return () => clearTimeout(timer);
+    }, []);
 
      const handleRegister = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -51,7 +54,7 @@ export default function LoginForm() {
 
    return (
         <div className="relative">
-            {/* Background blur overlay */}
+        {/* Background blur overlay */}
           {/*
             {isFormFocused && (
                 <div
@@ -59,9 +62,9 @@ export default function LoginForm() {
                     onClick={() => setIsFormFocused(false)}
                 />
             )}
-         */}
+          */}
             {/* Login form with frosted glass effect */}
-            {/*
+        {/*
             <div
                 className={`relative z-20 transition-all duration-300 rounded-xl p-6 ${
                     isFormFocused
@@ -71,7 +74,7 @@ export default function LoginForm() {
                 //Kanske ta bort hela backdrop-blur och frosted glass effekten? eller bara lägga till den på loggin formuläret??
                 onClick={() => setIsFormFocused(true)}
             >
-                */}
+         */}
                 {!isRegistering ? (
                     <form onSubmit={handleLogin} className="flex flex-col space-y-4 pt-4">
                         <input
@@ -79,10 +82,9 @@ export default function LoginForm() {
                             placeholder="username..."
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
-                         className={`border rounded-lg p-3 text-sm focus:outline-none transition-all ${
-  isFormFocused ? 'input-focused' : 'input-default'
-}`}
-
+                            className={`border rounded-lg p-3 text-sm focus:outline-none transition-all ${
+                                isFormFocused ? 'input-focused' : 'input-default'
+                            }`}
                             disabled={isLoading}
                         />
                         <input
@@ -90,10 +92,9 @@ export default function LoginForm() {
                             placeholder="password..."
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                          className={`border rounded-lg p-3 text-sm focus:outline-none transition-all ${
-  isFormFocused ? 'input-focused' : 'input-default'
-}`}
-
+                            className={`border rounded-lg p-3 text-sm focus:outline-none transition-all ${
+                                isFormFocused ? 'input-focused' : 'input-default'
+                            }`}
                             disabled={isLoading}
                         />
                         <button
@@ -136,9 +137,8 @@ export default function LoginForm() {
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
                             className={`border rounded-lg p-3 text-sm focus:outline-none transition-all ${
-  isFormFocused ? 'input-focused' : 'input-default'
-}`}
-
+                                isFormFocused ? 'input-focused' : 'input-default'
+                                }`}
                             disabled={isLoading}
                         />
                         <input
@@ -147,9 +147,8 @@ export default function LoginForm() {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             className={`border rounded-lg p-3 text-sm focus:outline-none transition-all ${
-  isFormFocused ? 'input-focused' : 'input-default'
-}`}
-
+                                isFormFocused ? 'input-focused' : 'input-default'
+                                }`}
                         />
                         <input
                             type="password"
@@ -157,25 +156,22 @@ export default function LoginForm() {
                             value={repeatPassword}
                             onChange={(e) => setRepeatPassword(e.target.value)}
                            className={`border rounded-lg p-3 text-sm focus:outline-none transition-all ${
-  isFormFocused ? 'input-focused' : 'input-default'
-}`}
-
+                                isFormFocused ? 'input-focused' : 'input-default'
+                                }`}
                             disabled={isLoading}
                         />
-
                         <button
                             type="submit"
                             disabled={isLoading}
                             className="bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold transition-all"
-                        >
-                            Skapa nytt konto
+                        > Create Account
                         </button>
 
                         <button
                             type="button"
                             onClick={() => setIsRegistering(false)} //tillbaka till inloggning
                             className="text-blue-600 font-medium hover:underline text-sm mt-2"
-                        >Tillbaka till inloggning
+                        >Back to login
                         </button>
                     </form>
                 )}

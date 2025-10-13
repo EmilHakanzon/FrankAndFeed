@@ -3,9 +3,9 @@ import LoginForm from "@/components/LoginForm";
 
 export default function LoginPage() {
   
-  return (
-    <main className="flex flex-col items-center justify-center w-full h-full">
-      {/* Logotyp-boxen */}
+ return (
+    <main className="flex items-center justify-center min-h-screen bg-gray-100">
+      {/*header */}
       <header className="absolute top-0 left-0 w-full h-18 bg-white shadow-sm flex items-center px-10 py-3">
         <div className="relative w-50 h-15 -ml-10">
           <Image
@@ -18,11 +18,13 @@ export default function LoginPage() {
         </div>
       </header>
 
-      {/* Login-formen-boxen */}
-      <div className="bg-white p-8 rounded-md w-80 sm:w-96 h-96"
+      {/*logIn-formulär */}
+      <div
+        className="bg-white p-8 rounded-md w-80 sm:w-96 shadow-md"
         style={{
-          boxShadow: "3px 3px 7px rgba(0, 0, 0, 0.20)"
-        }}>
+          boxShadow: "3px 3px 7px rgba(0, 0, 0, 0.20)",
+        }}
+      >
         <LoginForm />
       </div>
     </main>
