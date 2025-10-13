@@ -52,13 +52,16 @@ export default function LoginForm() {
    return (
         <div className="relative">
             {/* Background blur overlay */}
+          {/*
             {isFormFocused && (
                 <div
                     className="fixed inset-0 backdrop-blur-md bg-black/10 z-10 transition-all duration-300"
                     onClick={() => setIsFormFocused(false)}
                 />
             )}
+         */}
             {/* Login form with frosted glass effect */}
+            {/*
             <div
                 className={`relative z-20 transition-all duration-300 rounded-xl p-6 ${
                     isFormFocused
@@ -68,6 +71,7 @@ export default function LoginForm() {
                 //Kanske ta bort hela backdrop-blur och frosted glass effekten? eller bara lägga till den på loggin formuläret??
                 onClick={() => setIsFormFocused(true)}
             >
+                */}
                 {!isRegistering ? (
                     <form onSubmit={handleLogin} className="flex flex-col space-y-4 pt-4">
                         <input
@@ -75,11 +79,10 @@ export default function LoginForm() {
                             placeholder="username..."
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
-                            className={`border rounded-lg p-3 text-sm focus:outline-none transition-all -mt-6 ${
-                                isFormFocused
-                                    ? 'border-white/20 bg-white/20 backdrop-blur-sm text-gray-800 placeholder-gray-600 focus:ring-2 focus:ring-blue-500/50 focus:border-transparent'
-                                    : 'border-gray-300 bg-white text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
-                            }`}
+                         className={`border rounded-lg p-3 text-sm focus:outline-none transition-all ${
+  isFormFocused ? 'input-focused' : 'input-default'
+}`}
+
                             disabled={isLoading}
                         />
                         <input
@@ -87,11 +90,10 @@ export default function LoginForm() {
                             placeholder="password..."
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            className={`border rounded-lg p-3 text-sm focus:outline-none transition-all ${
-                                isFormFocused
-                                    ? 'border-white/20 bg-white/20 backdrop-blur-sm text-gray-800 placeholder-gray-600 focus:ring-2 focus:ring-blue-500/50 focus:border-transparent'
-                                    : 'border-gray-300 bg-white text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
-                            }`}
+                          className={`border rounded-lg p-3 text-sm focus:outline-none transition-all ${
+  isFormFocused ? 'input-focused' : 'input-default'
+}`}
+
                             disabled={isLoading}
                         />
                         <button
@@ -133,7 +135,10 @@ export default function LoginForm() {
                             placeholder="username..."
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
-                            className="border rounded-lg p-3 text-sm bg-blue-50 text-gray-400 placeholder-gray-500 focus:ring-2 focus:ring-blue-500"
+                            className={`border rounded-lg p-3 text-sm focus:outline-none transition-all ${
+  isFormFocused ? 'input-focused' : 'input-default'
+}`}
+
                             disabled={isLoading}
                         />
                         <input
@@ -141,15 +146,20 @@ export default function LoginForm() {
                             placeholder="password..."
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            className="border rounded-lg p-3 text-sm bg-blue-50 text-gray-400 placeholder-gray-500 focus:ring-2 focus:ring-blue-500"
-                            disabled={isLoading}
+                            className={`border rounded-lg p-3 text-sm focus:outline-none transition-all ${
+  isFormFocused ? 'input-focused' : 'input-default'
+}`}
+
                         />
                         <input
                             type="password"
                             placeholder="repeat password..."
                             value={repeatPassword}
                             onChange={(e) => setRepeatPassword(e.target.value)}
-                            className="border rounded-lg p-3 text-sm bg-blue-50 text-gray-400 placeholder-gray-500 focus:ring-2 focus:ring-blue-500"
+                           className={`border rounded-lg p-3 text-sm focus:outline-none transition-all ${
+  isFormFocused ? 'input-focused' : 'input-default'
+}`}
+
                             disabled={isLoading}
                         />
 
@@ -169,7 +179,6 @@ export default function LoginForm() {
                         </button>
                     </form>
                 )}
-            </div>
         </div>
     );
 }
