@@ -1,5 +1,6 @@
 import "../globals.css";
 import Image from "next/image";
+import Link from "next/link";
 
 export const metadata = {
   title: "frankandfeed | Home",
@@ -56,7 +57,7 @@ export default function HomeLayout({
           />
         </button>
 
-        <button className="flex flex-col items-center transition">
+        <Link href="/profile" className="flex flex-col items-center transition">
           <Image
             src="/profileIcon.png"
             alt="Profile"
@@ -64,7 +65,7 @@ export default function HomeLayout({
             height={60}
             className="opacity-80 hover:opacity-100 transition duration-200 hover:scale-110"
           />
-        </button>
+        </Link>
       </nav>
 
       {/*sidinnehåll */}

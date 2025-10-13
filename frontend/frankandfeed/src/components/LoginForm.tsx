@@ -58,24 +58,29 @@ export default function LoginForm() {
 
   return (
     <div className="relative">
-      {/* Background blur overlay */}
-      {isFormFocused && (
-        <div
-          className="fixed inset-0 backdrop-blur-md bg-black/10 z-10 transition-all duration-300"
-          onClick={() => setIsFormFocused(false)}
-        />
-      )}
-      {/* Login form with frosted glass effect */}
-      <div
-        className={`relative z-20 transition-all duration-300 rounded-xl p-6 ${
-          isFormFocused
-            ? "backdrop-blur-xl bg-white border border-white/20 shadow-xl"
-            : "bg-transparent border-transparent"
-        }`}
-        onClick={() => setIsFormFocused(true)}
-      >
+       {/* Background blur overlay */}
+          {/*
+            {isFormFocused && (
+                <div
+                    className="fixed inset-0 backdrop-blur-md bg-black/10 z-10 transition-all duration-300"
+                    onClick={() => setIsFormFocused(false)}
+                />
+            )}
+          */}
+            {/* Login form with frosted glass effect */}
+        {/*
+            <div
+                className={`relative z-20 transition-all duration-300 rounded-xl p-6 ${
+                    isFormFocused
+                        ? 'backdrop-blur-xl bg-white border border-white/20 shadow-xl'
+                        : 'bg-transparent border-transparent'
+                }`}
+                //Kanske ta bort hela backdrop-blur och frosted glass effekten? eller bara lägga till den på loggin formuläret??
+                onClick={() => setIsFormFocused(true)}
+            >
+         */}
         {!isRegistering ? (
-          <form onSubmit={handleLogin} className="flex flex-col space-y-4 pt-4">
+          <form onSubmit={handleLogin} className="flex flex-col space-y-5 pt-10">
             <input
               type="text"
               placeholder="username..."
@@ -197,7 +202,7 @@ export default function LoginForm() {
             </button>
           </form>
         )}
-      </div>
+     
     </div>
   );
 }
