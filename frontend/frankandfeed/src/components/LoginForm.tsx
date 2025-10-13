@@ -130,7 +130,7 @@ export default function LoginForm() {
                     <form onSubmit={handleRegister} className="flex flex-col space-y-4 pt-4">
                         <input
                             type="text"
-                            placeholder="email..."
+                            placeholder="username..."
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
                             className="border rounded-lg p-3 text-sm bg-blue-50 text-gray-400 placeholder-gray-500 focus:ring-2 focus:ring-blue-500"
