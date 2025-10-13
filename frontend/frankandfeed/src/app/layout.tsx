@@ -1,3 +1,4 @@
+import Header from "@/components/HeaderComponents";
 import "./globals.css";
 
 // Root layout för inloggningssidan
@@ -14,7 +15,8 @@ export default function RootLayout({
   return (
     <html lang="sv">
       <body className="bg-gray-100 min-h-screen flex items-center justify-center">
-        {children}
+        <Header />
+        <main> {children}</main>
       </body>
     </html>
   );
