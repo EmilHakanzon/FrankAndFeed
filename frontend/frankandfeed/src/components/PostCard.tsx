@@ -1,57 +1,65 @@
 import Image from "next/image";
 
-interface PostCardProps {
-  username: string;
-  avatar: string;
-  image: string;
-}
-  {/*
-  interface Post {
+  interface PostCardProps {
   id: number;
   createdAt: string;
-  author: {
-    username: string;
-    avatarUrl: string;
-          };
-  body: string;
+  authorID: number;
+  username: string;
+  avatar: string;
+  body?: string;
+  image?: string;
   likedBy: string[];
+  children?: string[];
 }
-  */}
 
-export default function PostCard({ username, avatar, image }: PostCardProps) { //byter ut sen till  author, body, likedBy, createdAt enligt design bibel
+export default function PostCard({
+  username, 
+  avatar, 
+  body, 
+  image,
+  likedBy,
+  createdAt,
+}: PostCardProps) {
   return (
     <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
-      {/*profil*/}
+      
+      {/*profil med tid*/}
       <div className="flex items-center space-x-3 mb-3">
         <Image
-          src="/profileIcon.png" //{author.avatarUrl || "/profileIcon.png"}
-          alt="Profile icon"     //{`${author.username} avatar`}
+          src={"/profileIcon.png" || avatar  }
+          alt={`${username} avatar`}
           width={80}
           height={75}
-          className="rounded-full"
+          className="rounded-full object-cover"
         />
-        <span className="font-semibold text-gray-500">{username}</span>
-        {/*   
         <div>
-          <span className="font-semibold text-gray-800">{author.username}</span>
-          <p className="text-xs text-gray-400">
-            {new Date(createdAt).toLocaleDateString()}
+          <span className="font-semibold text-gray-500">{username}</span>
+          <p className="text-sm text-gray-400">
+            {new Date(createdAt).toLocaleDateString("sv-SE", {
+              dateStyle: "medium",
+              timeStyle: "short",
+            })}
           </p>
-        </div> 
-        */}
+        </div>
       </div>
 
-      {/*post body */} 
-      {/*byt ut allt med <p className="text-gray-700 mb-3">{body}</p>*/}
-      <div className="overflow-hidden pb-6">
-        <Image
-          src={image} //feedbild
-          alt="feed post"
-          width={600}
-          height={400}
-          className="w-full object-cover"
-        />
-      </div>
+      {/*text body */} 
+      {body && (
+          <p className="text-gray-700 mb-3 whitespace-pre-line">{body}</p>
+        )}
+
+      {/* bild body */}
+      {image && (
+        <div className="overflow-hidden rounded-lg">
+          <Image
+            src={image}
+            alt="Post image"
+            width={600}
+            height={400}
+            className="w-full object-cover"
+          />
+        </div>
+      )}
 
       {/*interaktionsfält */}
       <div className="flex justify-around text-gray-500 mt-3 border-t border-gray-300 pt-2">

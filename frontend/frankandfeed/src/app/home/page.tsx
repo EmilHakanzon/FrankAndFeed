@@ -8,9 +8,9 @@ interface Post {
   id: number;
   createdAt: string;
   author: {
-    username: string;
-    avatarUrl: string;
-  };
+  username: string;
+  avatarUrl: string;
+          };
   body: string;
   likedBy: string[];
 }
@@ -18,6 +18,11 @@ interface Post {
 export default function HomePage() {
   //dummy-data (senare hämtas via API)
   const feedData = [
+    {
+      username: "Monster name",
+      avatar: "/monster.png",
+      body: "This is a simple text post, to demonstrate the postcard text post.",
+    },
     {
       username: "Monster name",
       avatar: "/monster.png",

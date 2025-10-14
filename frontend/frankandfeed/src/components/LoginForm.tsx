@@ -190,7 +190,7 @@ export default function LoginForm() {
                   : "bg-green-600 hover:bg-green-700 disabled:bg-green-400"
               }`}
             >
-              Skapa nytt konto
+              Create Account
             </button>
 
             <button
@@ -198,7 +198,7 @@ export default function LoginForm() {
               onClick={() => setIsRegistering(false)}
               className="text-blue-600 font-medium hover:underline text-sm mt-2"
             >
-              Tillbaka till inloggning
+              Back to Login
             </button>
           </form>
         )}
