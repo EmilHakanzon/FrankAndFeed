@@ -41,11 +41,13 @@ export default function PostCard({
         />
         <div>
           <span className="font-semibold text-gray-500">{username}</span>
-          <p className="text-sm text-gray-400">
-            {new Date(createdAt).toLocaleDateString("sv-SE", {
-              dateStyle: "medium",
-              timeStyle: "short",
-            })}
+         <p className="text-sm text-gray-400">
+            {createdAt && !isNaN(new Date(createdAt).getTime())
+              ? new Date(createdAt).toLocaleString("sv-SE", {
+                  dateStyle: "medium",
+                  timeStyle: "short",
+                })
+              : "Unknown date"}
           </p>
         </div>
       </div>
