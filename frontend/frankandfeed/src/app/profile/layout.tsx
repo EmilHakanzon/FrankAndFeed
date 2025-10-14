@@ -1,5 +1,6 @@
 import "../globals.css";
 import Image from "next/image";
+import Link from "next/link";
 
 export const metadata = {
   title: "frankandfeed | Profile",
@@ -17,7 +18,8 @@ export default function ProfileLayout({
 
       {/*nav — sticky */}
       <nav className="bg-white shadow-sm flex justify-center space-x-16 py-1 sticky top-0 z-50 rounded-lg max-w-2xl mx-auto mt-20">
-        <button className="flex flex-col items-center transition">
+         
+         <Link href="/home" className="flex flex-col items-center transition">
           <Image
             src="/homeIcon.png"
             alt="Home"
@@ -25,9 +27,8 @@ export default function ProfileLayout({
             height={60}
             className="opacity-80 hover:opacity-100 transition duration-200 hover:scale-110"
           />
-        </button>
-
-        <button className="flex flex-col items-center transition">
+        </Link>
+               <button className="flex flex-col items-center transition">
           <Image
             src="/feedIcon.png"
             alt="Feed"
