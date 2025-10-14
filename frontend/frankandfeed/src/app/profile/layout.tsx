@@ -13,19 +13,10 @@ export default function ProfileLayout({
 }) {
   return (
     <div className="bg-gray-100 min-h-screen w-full">
-      {/*header*/}
-      <header className="w-full bg-white shadow-sm flex items-center px-5 py-2 z-40">
-        <Image
-          src="/logo.png"
-          alt="frankandfeed logo"
-          width={160}
-          height={40}
-          priority
-        />
-      </header>
+     
 
       {/*nav — sticky */}
-      <nav className="bg-white shadow-sm flex justify-center space-x-16 py-1 sticky top-0 z-50 rounded-lg max-w-2xl mx-auto mt-1">
+      <nav className="bg-white shadow-sm flex justify-center space-x-16 py-1 sticky top-0 z-50 rounded-lg max-w-2xl mx-auto mt-20">
         <button className="flex flex-col items-center transition">
           <Image
             src="/homeIcon.png"
