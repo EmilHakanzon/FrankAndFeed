@@ -1,4 +1,5 @@
 import Image from "next/image";
+import useLikeLogic from "@/hooks/LikeButtonLogic";
 
   interface PostCardProps {
   id: number;
@@ -17,9 +18,15 @@ export default function PostCard({
   avatar, 
   body, 
   image,
-  likedBy,
+  likedBy = [],
   createdAt,
 }: PostCardProps) {
+
+   const { isLiked, likeCount, handleLike } = useLikeLogic({
+    initialLikes: likedBy.length,
+  });
+
+
   return (
     <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
       
@@ -61,9 +68,28 @@ export default function PostCard({
         </div>
       )}
 
+      {/* like räknare */}
+      <div className="flex items-center mt-4">
+        {isLiked && (
+          <Image
+            src="/Like.png"
+            alt="Liked icon"
+            width={25}
+            height={25}
+            className="animate-pulse"
+          />
+        )}
+        <span className="text-blue-600 text-sm">
+          {likeCount > 0 ? `${likeCount} ${likeCount === 1 ? " " : " "}` : ""}
+        </span>
+      </div>
+
       {/*interaktionsfält */}
       <div className="flex justify-around text-gray-500 mt-3 border-t border-gray-300 pt-2">
-       <button className="flex items-center gap-1 rounded-lg px-1 py-1 transition-all duration-200 hover:bg-gray-100">
+        <button
+          onClick={handleLike}
+          className="flex items-center gap-1 rounded-lg px-1 py-1 transition-all duration-200 hover:bg-gray-100"
+        >
           <Image
             src="/likeIcon.png"
             alt="Like icon"
@@ -71,8 +97,10 @@ export default function PostCard({
             height={30}
             className="opacity-80 hover:opacity-100"
           />
-          <span>Like</span> {/*byt ut till <span>{likedBy.length} Likes</span> */}
-       </button>
+          <span className={isLiked ? "text-blue-600 font-semibold" : ""}>
+            Like
+          </span>
+        </button>
 
         <button className="flex items-center gap-1 rounded-lg px-1 py-1 transition-all duration-200 hover:bg-gray-100">
           <Image
